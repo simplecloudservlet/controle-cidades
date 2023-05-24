@@ -1,1 +1,8 @@
-<p>primeiro-componente works!</p>
+
+<p>primeiro-componente: Componente com 'Interpolation': {{getNome()}}</p>
+
+<p>primeiro-componente: Componente com 'Property binding':
+  <span [innerText]="getTexto()"></span>
+</p>
+
+<button type="button" (click)="cadastrar()">Cadastrar Cidade Visitada</button>
