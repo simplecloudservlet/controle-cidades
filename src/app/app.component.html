@@ -1,2 +1,26 @@
+<nav class="nav-extended">
+  <div class="nav-wrapper cyan">
+    <a href="#" class="brand-logo">Cabeçalho: {{titulo}}</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#">{{opcao[0]}}</a></li>
+      <li><a href="#">{{opcao[1]}}</a></li>
+      <li><a href="#">{{opcao[2]}}</a></li>
+    </ul>
+  </div>
+
+</nav>
+
+<!-- Soh funciona a exibicao do sidenav se adicionar o '#mobile' aqui-->
+<!-- o '#mobile' deve ser referenciado no app.component.ts-->
+<ul class="sidenav" id="mobile-demo" #mobile>
+  <li><a href="#">{{opcao[0]}}</a></li>
+  <li><a href="#">{{opcao[1]}}</a></li>
+  <li><a href="#">{{opcao[2]}}</a></li>
+</ul>
+
 <app-primeiro-componente></app-primeiro-componente>
 <app-segundo-componente></app-segundo-componente>
+
