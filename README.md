@@ -15,7 +15,7 @@ https://www.figma.com/proto/vrJfNtgg3IrxGEutYO6yAf/Controle-Cidades-Visitadas?ty
 
 ## Checklist
 
-- [x] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop.
+- [x] Criar o repositório no GitHub com a estrutura do Gitflow, ou seja, branches main e develop. 
 - [] Usar componentes de algum framework CSS (Bootstrap, Materialize ou outro)
 - [] Apresentar as telas com layout responsivo usando ou não algum framework CSS.
 - [] Construir páginas web com o conceito de componentes.
