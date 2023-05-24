@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./primeiro-componente.component.css']
 })
 export class PrimeiroComponenteComponent {
+  nome: string = 'Controle de Cidades';
 
+  public getNome(): string{
+    return this.nome;
+  }
+  public getTexto(): string{
+    return 'Cidades';
+  }
+  public cadastrar(): string{
+    return 'Cidades';
+  }
 }
