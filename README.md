@@ -24,7 +24,7 @@ https://www.figma.com/proto/vrJfNtgg3IrxGEutYO6yAf/Controle-Cidades-Visitadas?ty
 - [X] Passar dados via hierarquia de componentes, ou seja, usando @Input ou @Output. 
 - [X] Mapear componentes à rotas no módulo de rotas.
 - [X] Criar navegação entre páginas por meio de rotas.
-- [X] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas.
+- [X] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas. 
 - [] Validar campos do formulário com REGEX e apresentar os erros.
 - [] Desabilitar o botão de submit enquanto o formulário está inválido.
 - [] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
