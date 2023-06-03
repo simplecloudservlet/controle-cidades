@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class SegundoComponenteComponent {
   titulo: string = 'Controle de Cidades';
+
 }
