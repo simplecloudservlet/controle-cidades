@@ -6,7 +6,6 @@ import { SegundoComponenteComponent } from './segundo-componente/segundo-compone
 import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
 
 const routes: Routes = [
-  {path : '', component: LandPageComponent},
   {path : 'controle-cidades', component: LandPageComponent},
   {path : 'lista-cidades', component: ListaCidadesComponent},
   {path : 'primeiro', component: PrimeiroComponenteComponent},
