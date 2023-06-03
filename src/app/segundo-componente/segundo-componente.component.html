@@ -1,9 +1,13 @@
+<p></p>
+
 <footer class="page-footer cyan">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">segundo-componente: Rodapé</h5>
-
+        <h5 class="white-text"><a routerLink="/">VOLTAR</a>
+          <p></p>segundo-componente: Rodapé</h5>
+        <!-- Projecao com Angular: traz HTML conteudo do app.component -->
+        <ng-content></ng-content>
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Links</h5>
@@ -21,5 +25,6 @@
     © 2023 {{titulo}}
     <a class="grey-text text-lighten-4 right" href="#">Outros Links</a>
     </div>
+
   </div>
 </footer>

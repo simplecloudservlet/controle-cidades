@@ -13,14 +13,52 @@
 
 </nav>
 
-<!-- Soh funciona a exibicao do sidenav se adicionar o '#mobile' aqui-->
-<!-- o '#mobile' deve ser referenciado no app.component.ts-->
+<!-- Soh funciona a exibicao do sidenav se adicionar a variavel de template '#mobile' aqui-->
+<!-- A variavel de template '#mobile' deve ser referenciada no app.component.ts-->
 <ul class="sidenav" id="mobile-demo" #mobile>
   <li><a href="#">{{opcao[0]}}</a></li>
   <li><a href="#">{{opcao[1]}}</a></li>
   <li><a href="#">{{opcao[2]}}</a></li>
 </ul>
 
-<app-primeiro-componente></app-primeiro-componente>
-<app-segundo-componente></app-segundo-componente>
 
+<!-- Roteamento -->
+<!-- Componentes com rotas serão mostrados aqui -->
+<router-outlet></router-outlet>
+
+
+<app-modal [show]="modal.show" [content]="modal" (closeEvent)="onCloseModal()"></app-modal>
+
+<p></p>
+<p></p>
+<button type="button" (click)="cadastrar()">Modal: Cadastrar Cidade Visitada</button>
+
+<p>Exibir janela modal: {{this.exibir}}</p>
+
+<!-- Variavel de template: acesso ao filho, similar ao decorator @Input -->
+<button type="button" (click)="filho.alterarNumero()">Visitas {{filho.numero}}</button>
+
+
+  <p>#p1: @Input e @Output entre [app.component] e [app-primeiro-componente]:</p>
+<!-- [Property binding]: usado pelo @Input: pai envia para o filho-->
+<!-- (Event binding): usado pelo @Output: filho envia para o pai-->
+<!-- #filho eh uma variavel de template para acessar o objeto filho (Exemplo no button acima)-->
+<!-- [valor] estah no filho [primeiro-componente] (@Input)
+     [this.exibir] estah no pai [app.component]
+     (tarefa) estah no filho [primeiro-componente] (@Output)
+     quando [this.exibir] muda, filho faz '@Output tarefa' e dispara o evento da janela modal -->
+  <app-primeiro-componente
+  #filho
+  #p1
+  [menuText]="'pai [app.component] -> preenche no filho [primeiro-componente]'"
+  [valor]="this.exibir"
+  (tarefa)="this.onTarefaEvent($event)"></app-primeiro-componente>
+
+<!-- <app-primeiro-componente
+#p2
+[menuText]="'pai [app.component] -> preenche no filho [primeiro-componente]'"
+></app-primeiro-componente>
+-->
+
+
+<app-segundo-componente><p>NovoValor: {{this.novovalor}}</p></app-segundo-componente>

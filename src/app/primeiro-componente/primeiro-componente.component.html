@@ -1,8 +1,19 @@
+<a routerLink="/">VOLTAR</a>
 
-<p>primeiro-componente: Componente com 'Interpolation': {{getNome()}}</p>
-
+<!--<p>primeiro-componente: Componente com 'Interpolation': {{getNome()}}</p>
 <p>primeiro-componente: Componente com 'Property binding':
   <span [innerText]="getTexto()"></span>
 </p>
+-->
 
-<button type="button" (click)="cadastrar()">Cadastrar Cidade Visitada</button>
+<!-- Preenchido pelo pai: app.component -->
+<p>{{menuText}}</p> <!-- conteudo de [menuText] das variaveis de template #p1 e #p2-->
+
+<tr
+  *ngFor="let t of this.cidades"
+   [routerLink]="['/lista-cidades']" [queryParams]="{id: t.id}"
+><td><p></p>Clique>>{{t.id}}:{{t.conteudo}}</td>
+</tr>
+
+
+
