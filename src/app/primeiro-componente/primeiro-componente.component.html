@@ -1,4 +1,4 @@
-<a routerLink="/">VOLTAR</a>
+<a routerLink="/controle-cidades">VOLTAR</a>
 
 <!--<p>primeiro-componente: Componente com 'Interpolation': {{getNome()}}</p>
 <p>primeiro-componente: Componente com 'Property binding':
@@ -11,7 +11,7 @@
 
 <tr
   *ngFor="let t of this.cidades"
-   [routerLink]="['/lista-cidades']" [queryParams]="{id: t.id}"
+   [routerLink]="['/controle-cidades/lista-cidades']" [queryParams]="{id: t.id}"
 ><td><p></p>Clique>>{{t.id}}:{{t.conteudo}}</td>
 </tr>
 
