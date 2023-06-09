@@ -10,7 +10,7 @@ const routes: Routes = [
   {path : 'controle-cidades', component: LandPageComponent},
   {path : 'controle-cidades/lista-cidades', component: ListaCidadesComponent},
   {path : 'controle-cidades/primeiro', component: PrimeiroComponenteComponent},
-  {path : 'controle-cidades/segundo', component: SegundoComponenteComponent}
+  {path : 'controle-cidades/segundo', component: SegundoComponenteComponent},
 ];
 
 @NgModule({
