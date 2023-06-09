@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,11 +17,12 @@ import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
     SegundoComponenteComponent,
     ModalComponent,
     LandPageComponent,
-    ListaCidadesComponent
+    ListaCidadesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

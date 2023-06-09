@@ -23,6 +23,7 @@ export class PrimeiroComponenteComponent implements OnInit, OnChanges {
   @Output() tarefa = new EventEmitter<boolean>(); /* filho emite evento para o pai*/
                                                  /* pai usa (event binding) para capturar o evento*/
 
+  mostrarComplemento:boolean = false;
 
   numero: number = 0;
 
@@ -77,7 +78,12 @@ public cadastrar(): void{
     this.exibir=true;
 }
 
-
+public mostrar(): void{
+  if(this.mostrarComplemento===true)
+    this.mostrarComplemento=false;
+  else
+    this.mostrarComplemento=true;
+}
 
 
 }
