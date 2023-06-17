@@ -63,8 +63,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   /*Injestao de dependencia @Injectable: precisa sim de import*/
   constructor(private localStorageService: LocalStorageService){
     localStorage.setItem(Constants.USERS_KEY, JSON.stringify([]));//Cria a key de usuarios
-    this.user = new User('', '', '');
-    this.usuarios = this.localStorageService.lerUsuarios(); /*Le os usuarios do localStorage */
+    localStorage.setItem(Constants.CIDADES_KEY, JSON.stringify([]));//Cria a key de usuarios
+
   }
 
   ngOnInit(): void {

@@ -27,10 +27,10 @@ export class LocalStorageService {
   }
   removerCidade(cidade: Cidade): boolean {
     this.cidades = WebStorage.get(Constants.CIDADES_KEY);
-    this.cidades = this.cidades.filter((u) => { /*Recupera todos os usuarios, menos o que quero remover*/
+    this.cidades = this.cidades.filter((u) => { /*Recupera todas as cidades, menos o que quero remover*/
       return u.id?.valueOf() != cidade.id?.valueOf();
     });
-    WebStorage.set(Constants.CIDADES_KEY, this.cidades); //Atualiza o vetor de usuarios
+    WebStorage.set(Constants.CIDADES_KEY, this.cidades); //Atualiza o vetor de cidades
     return true;
   }
   atualizarUsuario(user:User):void {

@@ -2,19 +2,19 @@
   "cidades": [
     {
       "id": "1",
-      "name": "uberaba"
+      "name": "Uberaba"
     },
     {
       "id": "2",
-      "name": "uberlandia"
+      "name": "Uberlandia"
     },
     {
       "id": "3",
-      "name": "araguari"
+      "name": "Araguari"
     },
     {
       "id": "4",
-      "name": "apucarana"
+      "name": "Apucarana"
     }
   ],
   "visitas": [
@@ -55,12 +55,6 @@
       "name": "DDD",
       "username": "userddd",
       "password": "passddd"
-    },
-    {
-      "id": "179",
-      "name": "AAABB",
-      "username": "aaa",
-      "password": "11111"
     }
   ]
 }

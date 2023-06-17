@@ -119,11 +119,33 @@ constructor(
 
 
     } else {
-      this.localStorageService.atualizarCidade(this.cidade);
 
-      this.form.reset();
-      this.cidade = new Cidade('');
-      this.cidades= this.localStorageService.lerCidades();
+      //Promise
+      this.cidadeService.atualizar(this.cidade)
+      .then(() => {
+        window.alert('Atualizado com Promise Assincrono');
+        this.form.reset();
+        this.cidade = new Cidade('');
+        this.cidades= this.localStorageService.lerCidades();
+
+        this.mostrarMensagem = true;
+        this.sucesso = true;
+        this.mensagem = 'Cadastro atualizado!';
+        this.submetido= true;
+      })
+      .catch((e: string) => {
+        this.sucesso = false;
+        this.mensagem = e;
+      })
+      .finally(() => {
+        console.log('Operacao concluida');
+      });
+
+      //this.localStorageService.atualizarCidade(this.cidade);
+
+      //this.form.reset();
+      //this.cidade = new Cidade('');
+      //this.cidades= this.localStorageService.lerCidades();
 
       this.mostrarMensagem = true;
       this.sucesso = true;
@@ -147,8 +169,30 @@ constructor(
     if (!confirmation) {
       return;
     }
-    let resposta: boolean = this.localStorageService.removerCidade(cidade);
-    this.mostrarMensagem = true;
+    //let resposta: boolean = this.localStorageService.removerCidade(cidade);
+
+//Promise
+this.cidadeService.remover(cidade)
+.then(() => {
+  window.alert('Removido com Promise Assincrono');
+  this.form.reset();
+  this.cidade = new Cidade('');
+  this.cidades= this.localStorageService.lerCidades();
+
+  this.mostrarMensagem = true;
+  this.sucesso = true;
+  this.mensagem = 'Cidade removida!';
+  this.submetido= true;
+})
+.catch((e: string) => {
+  this.sucesso = false;
+  this.mensagem = e;
+})
+.finally(() => {
+  console.log('Operacao concluida');
+});
+  }
+  /*  this.mostrarMensagem = true;
     this.sucesso = resposta;
     if (resposta) {
       this.mensagem = 'Cidade removida.';
@@ -157,6 +201,6 @@ constructor(
     }
     this.cidades = this.localStorageService.lerCidades();
   }
-
+*/
 
 }
