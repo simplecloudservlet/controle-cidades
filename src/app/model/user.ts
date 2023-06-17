@@ -21,7 +21,7 @@ export class User {
     return u;
   }
   /*Adquire um objeto da API e transforma em um objeto da WebStorage */
-  public static converteUsuarioParaWS(user: User){
+  public static toWS(user: User){
     let u: User = new User(user.name, user.username, user.password);
     u.name = user.name;
     u.username=user.username;

@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { User } from './model/user';
 //import { WebStorage } from './model/webstorage';
-import { LocalStorageService } from './model/local-storage.service';
+import { LocalStorageService } from './services/local-storage.service';
 import { Constants } from './model/constants';
 
 @Component({
@@ -63,54 +63,13 @@ export class AppComponent implements AfterViewInit, OnInit {
   /*Injestao de dependencia @Injectable: precisa sim de import*/
   constructor(private localStorageService: LocalStorageService){
     localStorage.setItem(Constants.USERS_KEY, JSON.stringify([]));//Cria a key de usuarios
-    this.user = new User('', '', '');
-    this.usuarios = this.localStorageService.lerUsuarios(); /*Le os usuarios do localStorage */
+    localStorage.setItem(Constants.CIDADES_KEY, JSON.stringify([]));//Cria a key de usuarios
+
   }
 
   ngOnInit(): void {
     /*Altera no inicio da exibicao*/
     this.novovalor=456;
-  }
-
-  onSubmit(): void{
-    this.submetido = true;
-    if (!this.localStorageService.existir(this.user.username)) { /*Se nao existe, salva */
-      this.localStorageService.salvar(this.user);
-    } else {
-      this.localStorageService.atualizar(this.user);
-    }
-    this.form.reset();
-    this.user = new User('', '', '');
-    this.usuarios= this.localStorageService.lerUsuarios();
-
-    this.mostrarMensagem = true;
-    this.sucesso = true;
-    this.mensagem = 'Cadastro realizado!';
-
-  }
-
-  /* Para nao atribuir imediatamente o conteudo ao objeto user*/
-  onEditar(user: User) {
-    //this.user = user;
-    let previa = User.preparar(user);
-    this.user = previa;
-  }
-  onRemover(username: string) {
-    let confirmation = window.confirm(
-      'Confirma remover ' + username + '?'
-    );
-    if (!confirmation) {
-      return;
-    }
-    let resposta: boolean = this.localStorageService.remover(username);
-    this.mostrarMensagem = true;
-    this.sucesso = resposta;
-    if (resposta) {
-      this.mensagem = 'Usuario removido.';
-    } else {
-      this.mensagem = 'Erro na remocao do usuario.';
-    }
-    this.usuarios = this.localStorageService.lerUsuarios();
   }
 
 
