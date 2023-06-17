@@ -1,0 +1,60 @@
+{
+  "cidades": [
+    {
+      "id": "1",
+      "name": "Uberaba"
+    },
+    {
+      "id": "2",
+      "name": "Uberlandia"
+    },
+    {
+      "id": "3",
+      "name": "Araguari"
+    },
+    {
+      "id": "4",
+      "name": "Apucarana"
+    }
+  ],
+  "visitas": [
+    {
+      "id": "1",
+      "cidadeId": "1",
+      "usuarioId": "1",
+      "date": "2021-05-21T00:12:50.777Z"
+    },
+    {
+      "id": "2",
+      "cidadeId": "2",
+      "usuarioId": "1",
+      "date": "2021-05-21T00:12:50.777Z"
+    },
+    {
+      "id": "3",
+      "cidadeId": "2",
+      "usuarioId": "2",
+      "date": "2021-05-21T00:12:50.777Z"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "name": "AAA",
+      "username": "useraaa",
+      "password": "passaaa"
+    },
+    {
+      "id": "2",
+      "name": "BBB",
+      "username": "userbbb",
+      "password": "passbbb"
+    },
+    {
+      "id": "3",
+      "name": "DDD",
+      "username": "userddd",
+      "password": "passddd"
+    }
+  ]
+}

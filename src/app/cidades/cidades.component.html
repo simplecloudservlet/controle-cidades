@@ -1,0 +1,87 @@
+<a routerLink="/controle-cidades">VOLTAR</a>
+
+<!-- -->
+<div class="container contact">
+  <h6>Informe os dados da cidade:</h6>
+  <p></p>
+  <div class="row">
+    <div class="col s12"> <!-- Mensagem de erro ou sucesso -->
+      <div
+        id="msg-login"
+        class="card-panel yellow black-text"
+        [class.yellow]="!this.sucesso"
+        [class.blue]="this.sucesso"
+        *ngIf="this.mostrarMensagem">
+          {{ this.mensagem }}
+      </div>
+    </div>
+  </div>
+  <!-- #form: variavel de template. Aponta para um objeto ngForm -->
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="input-field">
+      <!-- [(ngModel)]: two-way data binding-->
+      <!-- REGEX: \s?  Espaco no inicio eh opcional -->
+      <!-- REGEX: [A-Z]  Nome deve comecar com letra maiuscula -->
+      <!-- REGEX: (\s[a-z]*)?  (Opcional) nome do meio (Ex.: joao "da" silva) -->
+      <!--REGEX: verificar no site scriptular.com-->
+      <!-- name.untoched: campo 'name' ainda nao recebeu o foco-->
+      <input
+        id="input-name"
+        name="input-name"
+        type="text"
+        class="validate"
+        [(ngModel)]="this.cidade.name"
+        #name="ngModel"
+        pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)+(\s[a-zà-ú]*)?(\s?[A-ZÀ-Ú][a-zà-ú]*)+"
+        required
+      />
+      <label for="input-name">Nome da Cidade *</label>
+      <div class="red-text" [hidden]="name.valid || name.untouched">
+        -Nome da cidade: as iniciais de cada parte do nome devem comecar com letra maiuscula.
+        <p></p>
+        -Nome da cidade: apenas letras.
+      </div>
+    </div>
+
+    <!-- Le a variavel de template #form e habilita quando todos os campos sao validos -->
+    <button
+    type="submit"
+    [disabled]="!form.valid"
+  >
+    Submeter
+    <i class="material-icons right">send</i>
+  </button>
+  </form>
+  <h5>Cidades Cadastradas [{{this.cidades.length}}]:</h5>
+  <!-- Tabela de cidades -->
+  <table *ngIf="this.cidades.length >= 1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome da Cidade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of this.cidades">
+        <td>{{u.id}}</td>
+        <td>{{u.name}}</td>
+        <td class="right">
+          <a
+            ><i class="material-icons my-icon-size" (click)="onEditar(u)"
+              >edit</i
+            ></a
+          >
+          <a
+            ><i
+              class="material-icons my-icon-size"
+              (click)="onRemover(u)"
+              >delete</i
+            ></a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p></p>
+  <p></p>
