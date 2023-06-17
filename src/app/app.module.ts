@@ -1,6 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,8 @@ import { SegundoComponenteComponent } from './segundo-componente/segundo-compone
 import { ModalComponent } from './modal/modal.component';
 import { LandPageComponent } from './land-page/land-page.component';
 import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
+import { CidadesComponent } from './cidades/cidades.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
     ModalComponent,
     LandPageComponent,
     ListaCidadesComponent,
+    CidadesComponent,
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

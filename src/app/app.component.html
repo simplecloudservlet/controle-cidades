@@ -1,3 +1,6 @@
+
+<app-modal [show]="modal.show" [content]="modal" (closeEvent)="onCloseModal()"></app-modal>
+
 <nav class="nav-extended">
   <div class="nav-wrapper cyan">
     <a href="#" class="brand-logo">Cabeçalho: {{titulo}}</a>
@@ -26,129 +29,6 @@
 <!-- Componentes com rotas serão mostrados aqui -->
 <router-outlet></router-outlet>
 
-
-<app-modal [show]="modal.show" [content]="modal" (closeEvent)="onCloseModal()"></app-modal>
-
-<!-- -->
-<div class="container contact">
-<h6>Informe os dados do usuário:</h6>
-<p></p>
-<div class="row">
-  <div class="col s12"> <!-- Mensagem de erro ou sucesso -->
-    <div
-      id="msg-login"
-      class="card-panel yellow black-text"
-      [class.yellow]="!this.sucesso"
-      [class.blue]="this.sucesso"
-      *ngIf="this.mostrarMensagem">
-        {{ this.mensagem }}
-    </div>
-  </div>
-</div>
-<!-- #form: variavel de template. Aponta para um objeto ngForm -->
-<form #form="ngForm" (ngSubmit)="onSubmit()">
-  <div class="input-field">
-    <!-- [(ngModel)]: two-way data binding-->
-    <!-- REGEX: \s?  Espaco no inicio eh opcional -->
-    <!-- REGEX: [A-Z]  Nome deve comecar com letra maiuscula -->
-    <!-- REGES: (\s[a-z]*)?  (Opcional) nome do meio (Ex.: joao "da" silva) -->
-    <!--REGEX: verificar no site scriptular.com-->
-    <!-- name.untoched: campo 'name' ainda nao recebeu o foco-->
-    <input
-      id="input-name"
-      name="input-name"
-      type="text"
-      class="validate"
-      [(ngModel)]="this.user.name"
-      #name="ngModel"
-      pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)+(\s[a-zà-ú]*)?(\s?[A-ZÀ-Ú][a-zà-ú]*)+"
-      required
-    />
-    <label for="input-name">Nome Completo *</label>
-    <div class="red-text" [hidden]="name.valid || name.untouched">
-      -Nome completo: as iniciais de cada parte do nome devem comecar com letra maiuscula.
-    </div>
-  </div>
-
-  <div class="input-field col s12">
-    <input
-      id="input-username"
-      name="input-username"
-      type="text"
-      class="validate"
-      [(ngModel)]="this.user.username"
-      #username="ngModel"
-      pattern="^[a-z]+([a-z]+)*"
-      required
-    />
-    <label for="input-username">Username*</label>
-    <div class="red-text" [hidden]="username.valid || username.untouched">
-      -username: apenas letras
-      <p></p>
-      -username: deve ser em letras minúsculas e sem espaços.
-    </div>
-  </div>
-
-  <div class="input-field col s12 l6">
-    <input
-      id="input-password"
-      name="input-password"
-      type="password"
-      class="validate"
-      [(ngModel)]="this.user.password"
-      #password="ngModel"
-      pattern="^[a-zA-Z0-9]{5,10}$"
-      required
-    />
-    <label for="input-password">Password*</label>
-    <div class="red-text" [hidden]="password.valid || password.untouched">
-      -Senha apenas com letras e numeros.
-      <p></p>
-      -Senha com no minimo 5 (cinco) e no maximo 10 (dez) caracteres.
-    </div>
-  </div>
-  <!-- Le a variavel de template #form e habilita quando todos os campos sao validos -->
-  <button
-  type="submit"
-  [disabled]="!form.valid"
->
-  Submeter
-  <i class="material-icons right">send</i>
-</button>
-</form>
-<h5>Usuários Cadastrados [{{this.usuarios.length}}]:</h5>
-<!-- Tabela de usuários -->
-<table *ngIf="this.usuarios.length >= 1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome Completo</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let u of this.usuarios">
-      <td>{{u.id}}</td>
-      <td>{{u.name}}</td>
-      <td>{{u.username}}</td>
-      <td class="right">
-        <a
-          ><i class="material-icons my-icon-size" (click)="onEditar(u)"
-            >edit</i
-          ></a
-        >
-        <a
-          ><i
-            class="material-icons my-icon-size"
-            (click)="onRemover(u.username)"
-            >delete</i
-          ></a
-        >
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div>
 <p></p>
 <p></p>
 <button type="button" (click)="cadastrar()">Modal: Cadastrar Cidade Visitada</button>
@@ -158,27 +38,24 @@
 <!-- Variavel de template: acesso ao filho, similar ao decorator @Input -->
 <button type="button" (click)="filho.alterarNumero()">Visitas {{filho.numero}}</button>
 
- <div id="painel_servicos" [hidden]="!this.loggedIn">
-<!-- <div id="painel_servicos" *ngif="!this.loggedIn"> -->
-  <p>#p1: @Input e @Output entre [app.component] e [app-primeiro-componente]:</p>
+<div id="painel_servicos" [hidden]="!filho.mostrarComplemento"
+[class.yellow]="filho.mostrarComplemento">
+<!-- <div id="painel_servicos" *ngIf="!this.loggedIn"> -->
+<!-- <div id="painel_servicos"> -->
+  <p>#p1: @Input e @Output entre [app.component] e [primeiro-componente]:</p>
 <!-- [Property binding]: usado pelo @Input: pai envia para o filho-->
 <!-- (Event binding): usado pelo @Output: filho envia para o pai-->
 <!-- #filho eh uma variavel de template para acessar o objeto filho (Exemplo no button acima)-->
 <!-- [valor] estah no filho [primeiro-componente] (@Input)
      [this.exibir] estah no pai [app.component]
      (tarefa) estah no filho [primeiro-componente] (@Output)
-     quando [this.exibir] muda, filho faz '@Output tarefa' e dispara o evento da janela modal -->
+     quando [this.exibir] muda no pai, filho faz '@Output tarefa' e dispara o evento da janela modal -->
   <app-primeiro-componente
   #filho
   #p1
   [menuText]="'pai [app.component] -> preenche no filho [primeiro-componente]'"
   [valor]="this.exibir"
   (tarefa)="this.onTarefaEvent($event)"></app-primeiro-componente>
-
- <app-primeiro-componente
-#p2
-[menuText]="'pai [app.component] -> preenche no filho [primeiro-componente]'"
-></app-primeiro-componente>
 
 </div>
 

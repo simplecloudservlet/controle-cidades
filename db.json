@@ -1,0 +1,78 @@
+{
+  "cidades": [
+    {
+      "id": "1",
+      "name": "uberaba"
+    },
+    {
+      "id": "2",
+      "name": "uberlandia"
+    },
+    {
+      "id": "3",
+      "name": "araguari"
+    },
+    {
+      "id": "4",
+      "name": "apucarana"
+    }
+  ],
+  "visitas": [
+    {
+      "id": "1",
+      "cidadeId": "1",
+      "usuarioId": "1",
+      "date": "2021-05-21T00:12:50.777Z"
+    },
+    {
+      "id": "2",
+      "cidadeId": "2",
+      "usuarioId": "1",
+      "date": "2021-05-21T00:12:50.777Z"
+    },
+    {
+      "id": "3",
+      "cidadeId": "2",
+      "usuarioId": "2",
+      "date": "2021-05-21T00:12:50.777Z"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "1",
+      "name": "AAA",
+      "username": "useraaa",
+      "password": "passaaa"
+    },
+    {
+      "id": "2",
+      "name": "BBB",
+      "username": "userbbb",
+      "password": "passbbb"
+    },
+    {
+      "id": "3",
+      "name": "DDD",
+      "username": "userddd",
+      "password": "passddd"
+    },
+    {
+      "id": "352",
+      "name": "AAABBB",
+      "username": "aaa",
+      "password": "11111"
+    },
+    {
+      "id": "88",
+      "name": "AAA",
+      "username": "aaa",
+      "password": "11111"
+    },
+    {
+      "id": "142",
+      "name": "AAA",
+      "username": "aaa",
+      "password": "11111"
+    }
+  ]
+}
