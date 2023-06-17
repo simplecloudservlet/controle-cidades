@@ -1,9 +1,12 @@
+import { CidadeObservableHttpJsonserverService } from './../services/cidade-observable-http-jsonserver.service';
 
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Cidade } from '../model/cidade';
 import { LocalStorageService } from '../services/local-storage.service';
 import { CidadeService } from '../services/cidadeservice.service';
+import { WebStorage } from '../model/webstorage';
+import { Constants } from '../model/constants';
 
 @Component({
   selector: 'app-cidades',
@@ -26,15 +29,40 @@ cidades: Cidade[] = []; /*opcional (pode ser vazio)*/
 time = 0; /* relogio para mostrar o tempo de submissao onPromise assincrono */
   interval: string | number | undefined;
 
+
 constructor(
   private localStorageService: LocalStorageService,
-  private cidadeService: CidadeService){
+  private cidadeService: CidadeService,
+  //Service HTTP
+  private cidadeObservableService: CidadeObservableHttpJsonserverService){
 
-  this.cidade = new Cidade('');
-  this.cidades = this.localStorageService.lerCidades(); /*Le os cidades do localStorage */
 }
   ngOnInit(): void {
 
+    this.cidade = new Cidade('');
+    this.cidades = this.localStorageService.lerCidades(); /*Le os cidades do localStorage */
+
+    /*Utiliza Observable para trazer do json-server a lista de usuarios */
+    /*Insere o conteudo do db.json no localStorage */
+    try {
+
+    this.cidadeObservableService
+    .getByCidadename(Constants.CIDADES_KEY)  //Busca pelos usuarios no db.json
+    .subscribe((u: Cidade[]) => { //Ativa a execucao do getByUsername a partir daqui
+
+      u.forEach(element => {
+        if (!this.localStorageService.existirCidades(element)) { /*Se nao existe, salva */
+          this.localStorageService.salvarCidade(element) //insere no localstorage
+        }
+        //Atualiza a exibicao
+        this.cidades= this.localStorageService.lerCidades();
+        }
+      );
+    })} catch(e){    //Nao conseguiu trazer do json-server
+      //Entao traz do localStorage (traz o que estiver em cache. Se der um refresh, perde tudo)
+      this.cidade = WebStorage.get(Constants.CIDADES_KEY);
+      console.log('JSON Server desligado. Leitura do localStorage');
+    };
   }
   ngAfterViewInit(): void {
 

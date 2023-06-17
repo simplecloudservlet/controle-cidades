@@ -122,7 +122,7 @@ ngOnInit(): void{
     try {
       this.userObservableService
       .delete(user)
-      .subscribe((u: User)=> console.log(u.name + ' Removido no JSON Server'));
+      .subscribe(() => console.log(user.name + ' Removido no JSON Server'));
       } catch (e) {
         console.log('Erro ao remover no JSON Server');
       }

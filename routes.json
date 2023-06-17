@@ -1,5 +1,5 @@
 {
-  "/cidades/:id": "/cidades:id",
-  "/usuarios/:id": "/usuarios:id",
-  "/visitas/:id": "/visitas:id"
+  "/cidades/:id": "/cidades/:id",
+  "/usuarios/:id": "/usuarios/:id",
+  "/visitas/:id": "/visitas/:id"
 }
