@@ -100,8 +100,8 @@
     <tbody>
       <tr *ngFor="let u of this.usuarios">
         <td>{{u.id}}</td>
-        <td>{{u.name}}</td>
-        <td>{{u.username}}</td>
+        <td>{{u.name | uppercase }}</td>
+        <td>{{u.username | lowercase }}</td>
         <td class="right">
           <a
             ><i class="material-icons my-icon-size" (click)="onEditar(u)"

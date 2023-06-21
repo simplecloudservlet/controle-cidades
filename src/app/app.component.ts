@@ -22,6 +22,8 @@ import { Constants } from './model/constants';
 })
 export class AppComponent implements AfterViewInit, OnInit {
 
+  exibirCampo: boolean = false;
+
   loggedIn:boolean = false;
 
   /*ViewChild: pai acessa o component filho dentro da classe. #form eh a variavel de template */
@@ -46,12 +48,6 @@ export class AppComponent implements AfterViewInit, OnInit {
   title = 'controle-cidades';
   titulo = 'controle-cidades';
   opcao = ['opcao1','opcao2','opcao3'];
-
-  transactions = [
-    {id: '1', conteudo: 'conteudo1'},
-    {id: '2', conteudo: 'conteudo2'},
-    {id: '3', conteudo: 'conteudo3'}
-  ];
 
   novovalor: number=123;
 
@@ -101,6 +97,13 @@ public cadastrar(): void{
 
 onCloseModal(){
   this.modal.show=false;
+}
+
+metodoExibirCampo(): void{
+  if(this.exibirCampo==true)
+    this.exibirCampo=false;
+  else
+    this.exibirCampo=true;
 }
 
 }
