@@ -64,7 +64,7 @@
     <tbody>
       <tr *ngFor="let u of this.cidades">
         <td>{{u.id}}</td>
-        <td>{{u.name}}</td>
+        <td>{{u.name | uppercase }}</td>
         <td class="right">
           <a
             ><i class="material-icons my-icon-size" (click)="onEditar(u)"

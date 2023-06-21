@@ -38,10 +38,13 @@
 <!-- Variavel de template: acesso ao filho, similar ao decorator @Input -->
 <button type="button" (click)="filho.alterarNumero()">Visitas {{filho.numero}}</button>
 
+<button type="button" (click)="this.metodoExibirCampo()">Exibir {{this.exibirCampo}}</button>
+<div id="area_escondida" *ngIf="this.exibirCampo">
+  <h1>Campo escondido.</h1>
+</div>
+
 <div id="painel_servicos" [hidden]="!filho.mostrarComplemento"
 [class.yellow]="filho.mostrarComplemento">
-<!-- <div id="painel_servicos" *ngIf="!this.loggedIn"> -->
-<!-- <div id="painel_servicos"> -->
   <p>#p1: @Input e @Output entre [app.component] e [primeiro-componente]:</p>
 <!-- [Property binding]: usado pelo @Input: pai envia para o filho-->
 <!-- (Event binding): usado pelo @Output: filho envia para o pai-->
