@@ -6,6 +6,7 @@ import { Constants } from '../model/constants';
 import { UsuarioObservableHttpJsonserverService } from '../services/usuario-observable-http-jsonserver.service';
 import { WebStorage } from '../model/webstorage';
 import { LocalStorageService } from '../services/local-storage.service';
+import { CidadeObservableHttpJsonserverService } from '../services/cidade-observable-http-jsonserver.service';
 
 @Component({
   selector: 'app-visitas',
@@ -23,23 +24,25 @@ mostrarMensagem: boolean = false;
 sucesso!: boolean;
 mensagem!: string;
 
-user!: User;  /*user nao pode ser vazio. Estah mapeado com o two-way data-binding [(ngModel)] */
-usuarios: User[] = []; /*opcional (pode ser vazio)*/
+user!: User;
+usuarios: User[] = [];
 
-conteudo!: any; /*para o two-way data-binding [(ngModel)]*/
+cidade!: Cidade;
+cidades: Cidade[] = [];
+
 
 constructor(
-  //Service
-  private localStorageService: LocalStorageService,
-  //Service
-  private userObservableService: UsuarioObservableHttpJsonserverService){
+    //Service
+    private localStorageService: LocalStorageService,
 
-  //--
-  //this.updateSelect();
-  //--
+    //Service (recupera usuarios do db.json via HTTP)
+    private userObservableService: UsuarioObservableHttpJsonserverService,
 
+    //Service (recupera usuarios do db.json via HTTP)
+    private cidadeObservableService: CidadeObservableHttpJsonserverService
+  ){
   //window.alert('1'); //Construtor inicia ANTES do ngOnInit
-}
+  }
 
 public updateSelect(): void {
 
@@ -54,13 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
     {value:1,name:"Option1"},
     {value:2,name:"Option2"},
     {value:3,name:"Option3"},
-    {value:4,name:"Option4"}];
+    {value:4,name:"Option4"}]; //Inicializa o options com alguns valores (opcional)
   var instances = M.FormSelect.init(elems,options);
-  elems.forEach(elem => {
+  /*elems.forEach(elem => {
     console.log('.');
     //let someVar = M.FormSelect.getInstance(elem);
     //console.log(someVar);
- });
+ });*/
 });
 }
   ngAfterViewInit(): void {
@@ -74,6 +77,8 @@ ngOnInit(): void{
   //window.alert('2');
   this.user = new User('', '', '');
   this.usuarios = this.localStorageService.lerUsuarios(); /*Le os usuarios do localStorage */
+  this.cidade = new Cidade('');
+  this.cidades = this.localStorageService.lerCidades(); /*Le as cidades do localStorage */
 
   //Inicializa o materialize.css select
   this.updateSelect();
@@ -101,6 +106,27 @@ ngOnInit(): void{
   };
 
   //window.alert(this.usuarios.length);
+  //---
+  try {
+
+    this.cidadeObservableService
+    .getByCidadeName(Constants.CIDADES_KEY)  //Busca pelas cidades no db.json
+    .subscribe((c: Cidade[]) => { //Ativa a execucao do getByUsername a partir daqui
+
+      c.forEach(element => {
+        if (!this.localStorageService.existirCidades(element)) { /*Se nao existe, salva */
+          this.localStorageService.salvarCidade(element) //insere no localstorage
+        }
+        //Atualiza a exibicao
+        this.cidades= this.localStorageService.lerCidades();
+        }
+      );
+    })} catch(e){    //Nao conseguiu trazer do json-server
+      //Entao traz do localStorage (traz o que estiver em cache. Se der um refresh, perde tudo)
+      this.cidade = WebStorage.get(Constants.CIDADES_KEY);
+      console.log('JSON Server desligado. Leitura do localStorage');
+    };
+
 }
 
 
@@ -108,7 +134,7 @@ usuarioSelecionado:any
 cidadeSelecionada:any
 onSubmit(): void{
 
-  alert('Visita: ' +
+  alert('Visita: ' + '\n' +
   this.usuarioSelecionado + '\n' +
   this.cidadeSelecionada);
 

@@ -14,6 +14,8 @@
       <label>Selecione o Usuário:</label>
       <br/>
       <select
+      id="selectusuario"
+      name="selectusuario"
       #selectusuario
       class="browser-default"
       (change)="aoSelecionarUsuario($event)"
@@ -23,6 +25,10 @@
           {{ u.name }}
         </option>
       </select>
+      <label for="selectusuario">Usuário*</label> <!-- ve a tag name-->
+      <div class="red-text" [hidden]="this.usuarioSelecionado!=null">
+        -usuário: selecionar usuário.
+      </div>
     </div>
 
     <!-- -->
@@ -31,6 +37,8 @@
       <label>Selecione a Cidade:</label>
       <br/>
       <select
+      id="selectcidade"
+      name="selectcidade"
       #selectcidade
       class="browser-default"
       (change)="aoSelecionarCidade($event)"
@@ -40,6 +48,10 @@
           {{ c.name }}
         </option>
       </select>
+      <label for="selectciade">Cidade*</label> <!-- ve a tag name-->
+      <div class="red-text" [hidden]="this.cidadeSelecionada!=null">
+        -cidade: selecionar cidade.
+      </div>
     </div>
     <!-- Le a variavel de template #form e habilita quando todos os campos sao validos -->
     <button
