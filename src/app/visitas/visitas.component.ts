@@ -1,20 +1,23 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { User } from '../model/user';
+import { Cidade } from '../model/cidade';
 import { Constants } from '../model/constants';
 import { UsuarioObservableHttpJsonserverService } from '../services/usuario-observable-http-jsonserver.service';
 import { WebStorage } from '../model/webstorage';
 import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  selector: 'app-visitas',
+  templateUrl: './visitas.component.html',
+  styleUrls: ['./visitas.component.css']
 })
-export class UsuariosComponent implements OnInit,AfterViewInit{
-
+export class VisitasComponent {
 /*ViewChild: pai acessa o component filho dentro da classe. #form eh a variavel de template */
 @ViewChild('form') formulario!: NgForm;
+
+@ViewChild('meuselect') meuselect!: NgForm;
+
 submetido!: boolean;
 mostrarMensagem: boolean = false;
 sucesso!: boolean;
@@ -23,35 +26,57 @@ mensagem!: string;
 user!: User;  /*user nao pode ser vazio. Estah mapeado com o two-way data-binding [(ngModel)] */
 usuarios: User[] = []; /*opcional (pode ser vazio)*/
 
+conteudo!: any; /*para o two-way data-binding [(ngModel)]*/
+
 constructor(
   //Service
   private localStorageService: LocalStorageService,
   //Service
   private userObservableService: UsuarioObservableHttpJsonserverService){
 
-    //window.alert('1'); //Construtor inicia ANTES do ngOnInit
+  //--
+  //this.updateSelect();
+  //--
+
+  //window.alert('1'); //Construtor inicia ANTES do ngOnInit
+}
+
+public updateSelect(): void {
+
+  //setTimeout(()=> {
+  //  alert(this.usuarios);
+ // },1000);
+
+//Indicacao do site do materialize.css para iniciar o 'select'
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('select');
+  var options: any = [
+    {value:1,name:"Option1"},
+    {value:2,name:"Option2"},
+    {value:3,name:"Option3"},
+    {value:4,name:"Option4"}];
+  var instances = M.FormSelect.init(elems,options);
+  elems.forEach(elem => {
+    console.log('.');
+    //let someVar = M.FormSelect.getInstance(elem);
+    //console.log(someVar);
+ });
+});
 }
   ngAfterViewInit(): void {
-
+    //this.updateSelect();
   }
 
 //Angular ngOninit (inicia DEPOIS do construtor. Similar ao constructor da classe)
 //Classe implements OnInit
 ngOnInit(): void{
+
   //window.alert('2');
-
-
   this.user = new User('', '', '');
   this.usuarios = this.localStorageService.lerUsuarios(); /*Le os usuarios do localStorage */
 
-//-- Indicado pelo site do materialize.css para habilitar HTML select
-document.addEventListener('DOMContentLoaded', function() {
-  let elems = document.querySelectorAll('select');
-  let classes:any = '';
-  var instances = M.FormSelect.init(elems, classes);
-});
-//--
-
+  //Inicializa o materialize.css select
+  this.updateSelect();
 
   /*Utiliza Observable para trazer do json-server a lista de usuarios */
   /*Insere o conteudo do db.json no localStorage */
@@ -78,9 +103,47 @@ document.addEventListener('DOMContentLoaded', function() {
   //window.alert(this.usuarios.length);
 }
 
-  onSubmit(): void{
-    this.submetido = true;
-    if (!this.localStorageService.existirUsuario(this.user)) { /*Se nao existe, salva */
+
+usuarioSelecionado:any
+cidadeSelecionada:any
+onSubmit(): void{
+
+  alert('Visita: ' +
+  this.usuarioSelecionado + '\n' +
+  this.cidadeSelecionada);
+
+  //alert((<any>this.meuselect).nativeElement.innerHTML);
+ // alert(this.conteudo.length);
+
+/* console.log('Passei por aqui');
+ //document.addEventListener('DOMContentLoaded', function() {
+  let elems = document.querySelectorAll('select');
+  //console.log(elems.length+'.'+M.FormSelect.getInstance(elems.item(0)).getSelectedValues());
+  console.log(elems.length);
+
+  //  var instances = M.FormSelect.init(elems);
+  elems.forEach(elem => {
+    console.log('.');
+    let someVar :any = M.FormSelect.getInstance(elem).getSelectedValues();
+    console.log(someVar);
+
+ });*/
+//});
+
+ //let elems = document.querySelectorAll('select');
+
+
+    /*
+
+    //var instances = M.FormSelect.init(elems);
+    elems.forEach(elem => {
+      let someVar = M.FormSelect.getInstance(elem);
+      alert(someVar);
+    });
+    //let someVar = M.FormSelect.getInstance(elems[0]).getSelectedValues();
+*/
+    /*this.submetido = true;
+    if (!this.localStorageService.existirUsuario(this.user)) {
       this.localStorageService.salvarUsuario(this.user);
 
       //Tenta salvar no JSON Server
@@ -113,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     this.sucesso = true;
     this.mensagem = 'Cadastro realizado!';
     window.alert(this.mensagem);
+    */
   }
 
   /* Para nao atribuir imediatamente o conteudo ao objeto user*/
@@ -148,5 +212,14 @@ document.addEventListener('DOMContentLoaded', function() {
     this.usuarios = this.localStorageService.lerUsuarios();
   }
 
+
+  aoSelecionarUsuario(event: Event) {
+    this.usuarioSelecionado = (event.target as HTMLInputElement).value;
+    alert('Usuário selecionado ' + this.usuarioSelecionado);
+  }
+  aoSelecionarCidade(event: Event) {
+    this.cidadeSelecionada = (event.target as HTMLInputElement).value;
+    alert('Cidade selecionada ' + this.cidadeSelecionada);
+  }
 
 }

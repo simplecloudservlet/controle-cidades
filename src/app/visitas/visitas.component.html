@@ -1,0 +1,105 @@
+
+<a routerLink="/controle-cidades">VOLTAR</a>
+
+
+<!-- -->
+<div class="container contact">
+  <h6>Informe os dados da Visita:</h6>
+  <p></p>
+  <div class="row">
+
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="input-field col s12">
+      <br/>
+      <label>Selecione o Usuário:</label>
+      <br/>
+      <select
+      #selectusuario
+      class="browser-default"
+      (change)="aoSelecionarUsuario($event)"
+      > <!-- 'browser-default' para habilitar o select-->
+        <option value="" disabled selected>Selecione o Usuário:</option>
+        <option *ngFor="let u of this.usuarios">
+          {{ u.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- -->
+    <div class="input-field col s12">
+      <br/>
+      <label>Selecione a Cidade:</label>
+      <br/>
+      <select
+      #selectcidade
+      class="browser-default"
+      (change)="aoSelecionarCidade($event)"
+      > <!-- 'browser-default' para habilitar o select-->
+        <option value="" disabled selected>Selecione a Cidade:</option>
+        <option *ngFor="let c of this.cidades">
+          {{ c.name }}
+        </option>
+      </select>
+    </div>
+    <!-- Le a variavel de template #form e habilita quando todos os campos sao validos -->
+    <button
+    type="submit"
+    [disabled]="!form.valid"
+  >
+    Submeter
+    <i class="material-icons right">send</i>
+  </button>
+  </form>
+
+    <div class="col s12"> <!-- Mensagem de erro ou sucesso -->
+      <div
+        id="msg-login"
+        class="card-panel yellow black-text"
+        [class.yellow]="!this.sucesso"
+        [class.blue]="this.sucesso"
+        *ngIf="this.mostrarMensagem">
+          {{ this.mensagem }}
+      </div>
+    </div>
+  </div>
+
+
+  <p></p>
+  <p></p>
+  <p></p>
+
+  <h5>Usuários Cadastrados [{{this.usuarios.length}}]:</h5>
+  <!-- Tabela de usuários -->
+  <table *ngIf="this.usuarios.length >= 1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome Completo</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of this.usuarios">
+        <td>{{u.id}}</td>
+        <td>{{u.name | uppercase }}</td>
+        <td>{{u.username | lowercase }}</td>
+        <td class="right">
+          <a
+            ><i class="material-icons my-icon-size" (click)="onEditar(u)"
+              >edit</i
+            ></a
+          >
+          <a
+            ><i
+              class="material-icons my-icon-size"
+              (click)="onRemover(u)"
+              >delete</i
+            ></a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p></p>
+  <p></p>
