@@ -47,7 +47,7 @@ constructor(
     try {
 
     this.cidadeObservableService
-    .getByCidadename(Constants.CIDADES_KEY)  //Busca pelos usuarios no db.json
+    .getByCidadeName(Constants.CIDADES_KEY)  //Busca pelos usuarios no db.json
     .subscribe((u: Cidade[]) => { //Ativa a execucao do getByUsername a partir daqui
 
       u.forEach(element => {

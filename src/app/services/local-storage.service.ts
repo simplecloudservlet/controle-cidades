@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { Cidade } from '../model/cidade';
 import { WebStorage } from '../model/webstorage';
 import { Injectable } from '@angular/core';
+import { Visita } from '../model/visita';
 
 /*Injectable: Singleton. Instancia unica para toda a aplicacao */
 @Injectable({
@@ -12,9 +13,12 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   users!: User[];
   cidades!: Cidade[];
+  visitas!: Visita[];
+
   constructor(){
     this.users = WebStorage.get(Constants.USERS_KEY);
     this.cidades = WebStorage.get(Constants.CIDADES_KEY);
+    this.visitas = WebStorage.get(Constants.VISITAS_KEY);
   }
 
   removerUsuario(usuario: User): boolean {
@@ -33,6 +37,16 @@ export class LocalStorageService {
     WebStorage.set(Constants.CIDADES_KEY, this.cidades); //Atualiza o vetor de cidades
     return true;
   }
+  removerVisita(visita: Visita): boolean {
+    this.visitas = WebStorage.get(Constants.VISITAS_KEY);
+    this.visitas = this.visitas.filter((u) => { /*Recupera todas as visitas, menos o que quero remover*/
+      return u.id?.valueOf() != visita.id?.valueOf();
+    });
+    WebStorage.set(Constants.VISITAS_KEY, this.visitas); //Atualiza o vetor de visitas
+    return true;
+  }
+
+
   atualizarUsuario(user:User):void {
     this.users = WebStorage.get(Constants.USERS_KEY);
     this.removerUsuario(user); //Remove usuario do array
@@ -43,6 +57,13 @@ export class LocalStorageService {
     this.removerCidade(cidade); //Remove  do array
     this.salvarCidade(cidade); //Salva o novo  atualizado
   }
+  atualizarVisita(visita:Visita):void {
+    this.visitas = WebStorage.get(Constants.VISITAS_KEY);
+    this.removerVisita(visita); //Remove  do array
+    this.salvarVisita(visita); //Salva o novo  atualizado
+  }
+
+
   //Cadastra uma entidade no WebStorage
   get(key: string): any {
     return JSON.parse(localStorage.getItem(key)!);
@@ -64,6 +85,14 @@ export class LocalStorageService {
     this.set(Constants.CIDADES_KEY, this.cidades);
     //window.alert(this.cidades.length);
   }
+  salvarVisita(visita:Visita):void {
+    this.visitas = this.get(Constants.VISITAS_KEY);
+    //window.alert(this.visitas.length);
+    this.visitas.push(visita); //insere no fim do array
+    this.set(Constants.VISITAS_KEY, this.visitas);
+    //window.alert(this.visitas.length);
+  }
+
   existirUsuario(user: User){
     this.users = WebStorage.get(Constants.USERS_KEY);
     for (let u of this.users) {
@@ -82,6 +111,16 @@ export class LocalStorageService {
     }
     return false;
   }
+  existirVisitas(visita: Visita){
+    this.visitas = WebStorage.get(Constants.VISITAS_KEY);
+    for (let u of this.visitas) {
+      if (u.id?.valueOf() == visita.id?.valueOf()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   lerUsuarios(): User[] {
     this.users = WebStorage.get(Constants.USERS_KEY);
     return this.users;
@@ -89,5 +128,9 @@ export class LocalStorageService {
   lerCidades(): Cidade[] {
     this.cidades = WebStorage.get(Constants.CIDADES_KEY);
     return this.cidades;
+  }
+  lerVisitas(): Visita[] {
+    this.visitas = WebStorage.get(Constants.VISITAS_KEY);
+    return this.visitas;
   }
 }

@@ -3,14 +3,14 @@
 
 <nav class="nav-extended">
   <div class="nav-wrapper cyan">
-    <a href="#" class="brand-logo">Cabeçalho: {{titulo}}</a>
+    <a href="controle-cidades" class="brand-logo"><h6>{{titulo}}</h6></a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger">
       <i class="material-icons">menu</i>
     </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#">{{opcao[0]}}</a></li>
-      <li><a href="#">{{opcao[1]}}</a></li>
-      <li><a href="#">{{opcao[2]}}</a></li>
+      <li><a href="controle-cidades/cidades">{{opcao[0]}}</a></li>
+      <li><a href="controle-cidades/usuarios">{{opcao[1]}}</a></li>
+      <li><a href="controle-cidades/visitas">{{opcao[2]}}</a></li>
     </ul>
   </div>
 
@@ -19,15 +19,28 @@
 <!-- Soh funciona a exibicao do sidenav se adicionar a variavel de template '#mobile' aqui-->
 <!-- A variavel de template '#mobile' deve ser referenciada no app.component.ts-->
 <ul class="sidenav" id="mobile-demo" #mobile>
-  <li><a href="#">{{opcao[0]}}</a></li>
-  <li><a href="#">{{opcao[1]}}</a></li>
-  <li><a href="#">{{opcao[2]}}</a></li>
+  <li><a href="controle-cidades/cidades">{{opcao[0]}}</a></li>
+  <li><a href="controle-cidades/usuarios">{{opcao[1]}}</a></li>
+  <li><a href="controle-cidades/visitas">{{opcao[2]}}</a></li>
 </ul>
-
 
 <!-- Roteamento -->
 <!-- Componentes com rotas serão mostrados aqui -->
 <router-outlet></router-outlet>
+
+<p></p>
+<button type="button" (click)="this.metodoMostrarFeatures()">Mostrar Exercícios: [{{this.mostrarFeatures}}]</button>
+<app-segundo-componente></app-segundo-componente>
+
+<!-- -->
+<!-- -->
+<!-- Daqui para baixo eh a implementacao das features da disciplina -->
+<div id="features_tutorial" *ngIf="this.mostrarFeatures">
+
+<!-- Roteamento -->
+<!-- Componentes com rotas serão mostrados aqui -->
+<!-- router-outlet da `land-page` vai ser sempre mostrado lah em cima-->
+<!-- <router-outlet></router-outlet> -->
 
 <p></p>
 <p></p>
@@ -68,4 +81,6 @@
   <p>Está logado.</p>
 </div>
 
-<app-segundo-componente><p>NovoValor: {{this.novovalor}}</p></app-segundo-componente>
+
+  <app-segundo-componente><p>NovoValor: {{this.novovalor}}</p></app-segundo-componente>
+</div> <!-- fim features_tutorial -->

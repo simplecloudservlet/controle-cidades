@@ -14,7 +14,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 export class UsuariosComponent implements OnInit,AfterViewInit{
 
 /*ViewChild: pai acessa o component filho dentro da classe. #form eh a variavel de template */
-@ViewChild('form') form!: NgForm;
+@ViewChild('form') formulario!: NgForm;
 submetido!: boolean;
 mostrarMensagem: boolean = false;
 sucesso!: boolean;
@@ -39,8 +39,19 @@ constructor(
 //Classe implements OnInit
 ngOnInit(): void{
   //window.alert('2');
+
+
   this.user = new User('', '', '');
   this.usuarios = this.localStorageService.lerUsuarios(); /*Le os usuarios do localStorage */
+
+//-- Indicado pelo site do materialize.css para habilitar HTML select
+document.addEventListener('DOMContentLoaded', function() {
+  let elems = document.querySelectorAll('select');
+  let classes:any = '';
+  var instances = M.FormSelect.init(elems, classes);
+});
+//--
+
 
   /*Utiliza Observable para trazer do json-server a lista de usuarios */
   /*Insere o conteudo do db.json no localStorage */
@@ -94,7 +105,7 @@ ngOnInit(): void{
       }
 
     }
-    this.form.reset();
+    this.formulario.reset();
     this.user = new User('', '', '');
     this.usuarios= this.localStorageService.lerUsuarios();
 
