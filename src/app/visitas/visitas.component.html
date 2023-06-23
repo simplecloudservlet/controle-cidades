@@ -94,6 +94,7 @@
         <th>ID</th>
         <th>Usuário</th>
         <th>Cidade</th>
+        <th>Data</th>
       </tr>
     </thead>
     <tbody>
@@ -101,12 +102,15 @@
         <td>{{u.id}}</td>
         <td>{{u.usuario | uppercase }}</td>
         <td>{{u.cidade | lowercase }}</td>
+        <td>{{u.data | date:'dd/MM/yyyy' }}</td>
         <td class="right">
+          <!-- TODO: Editar -->
+          <!--
           <a
             ><i class="material-icons my-icon-size" (click)="onEditar(u)"
               >edit</i
             ></a
-          >
+          >-->
           <a
             ><i
               class="material-icons my-icon-size"
