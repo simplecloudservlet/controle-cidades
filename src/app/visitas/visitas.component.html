@@ -4,6 +4,18 @@
 
 <!-- -->
 <div class="container contact">
+
+  <div class="col s12"> <!-- Mensagem de erro ou sucesso -->
+    <div
+      id="msg-login"
+      class="card-panel yellow black-text"
+      [class.yellow]="!this.sucesso"
+      [class.blue]="this.sucesso"
+      *ngIf="this.mostrarMensagem">
+        {{ this.mensagem }}
+    </div>
+  </div>
+
   <h6>Informe os dados da Visita:</h6>
   <p></p>
   <div class="row">
@@ -11,7 +23,7 @@
     <form #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="input-field col s12">
       <br/>
-      <label>Selecione o Usuário:</label>
+      <label>Usuário:</label>
       <br/>
       <select
       id="selectusuario"
@@ -20,21 +32,21 @@
       class="browser-default"
       (change)="aoSelecionarUsuario($event)"
       > <!-- 'browser-default' para habilitar o select-->
-        <option value="" disabled selected>Selecione o Usuário:</option>
-        <option *ngFor="let u of this.usuarios">
-          {{ u.name }}
+        <option value="" disabled selected>Selecione o Usuário*:</option>
+        <option *ngFor="let u of this.usuarios" name="u.name">
+          {{ u.name | uppercase }}
         </option>
       </select>
-      <label for="selectusuario">Usuário*</label> <!-- ve a tag name-->
+      <!--<label for="selectusuario">Usuário*</label>--> <!-- ve a tag name-->
       <div class="red-text" [hidden]="this.usuarioSelecionado!=null">
-        -usuário: selecionar usuário.
+        -Usuário: selecionar o Usuário.
       </div>
     </div>
 
     <!-- -->
     <div class="input-field col s12">
       <br/>
-      <label>Selecione a Cidade:</label>
+      <label>Cidade:</label>
       <br/>
       <select
       id="selectcidade"
@@ -43,58 +55,52 @@
       class="browser-default"
       (change)="aoSelecionarCidade($event)"
       > <!-- 'browser-default' para habilitar o select-->
-        <option value="" disabled selected>Selecione a Cidade:</option>
+        <option value="Selecione a Cidade*:" disabled selected>Selecione a Cidade*:</option>
         <option *ngFor="let c of this.cidades">
-          {{ c.name }}
+          {{ c.name | uppercase }}
         </option>
       </select>
-      <label for="selectciade">Cidade*</label> <!-- ve a tag name-->
+      <!--<label for="selectciade">Cidade*</label>--> <!-- ve a tag name-->
       <div class="red-text" [hidden]="this.cidadeSelecionada!=null">
-        -cidade: selecionar cidade.
+        -Cidade: selecionar a Cidade.
+      </div>
+    </div>
+
+    <!-- -->
+    <div class="input-field col s12">
+      <br/>
+      <label>Selecione a Data*:</label>
+      <br/>
+      <input type="text" class="datepicker" (change)="aoSelecionarData($event)">
+      <div class="red-text" [hidden]="this.dataSelecionada!=null">
+        -Data: selecionar a Data.
       </div>
     </div>
     <!-- Le a variavel de template #form e habilita quando todos os campos sao validos -->
     <button
     type="submit"
-    [disabled]="!form.valid"
+    [disabled]="this.usuarioSelecionado==null||this.cidadeSelecionada==null||this.dataSelecionada==null"
   >
     Submeter
     <i class="material-icons right">send</i>
   </button>
   </form>
 
-    <div class="col s12"> <!-- Mensagem de erro ou sucesso -->
-      <div
-        id="msg-login"
-        class="card-panel yellow black-text"
-        [class.yellow]="!this.sucesso"
-        [class.blue]="this.sucesso"
-        *ngIf="this.mostrarMensagem">
-          {{ this.mensagem }}
-      </div>
-    </div>
-  </div>
-
-
-  <p></p>
-  <p></p>
-  <p></p>
-
-  <h5>Usuários Cadastrados [{{this.usuarios.length}}]:</h5>
-  <!-- Tabela de usuários -->
-  <table *ngIf="this.usuarios.length >= 1">
+  <h5>Visitas Cadastradas [{{this.visitas.length}}]:</h5>
+  <!-- Tabela de visitas -->
+  <table *ngIf="this.visitas.length >= 1">
     <thead>
       <tr>
         <th>ID</th>
-        <th>Nome Completo</th>
-        <th>Username</th>
+        <th>Usuário</th>
+        <th>Cidade</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let u of this.usuarios">
+      <tr *ngFor="let u of this.visitas">
         <td>{{u.id}}</td>
-        <td>{{u.name | uppercase }}</td>
-        <td>{{u.username | lowercase }}</td>
+        <td>{{u.usuario | uppercase }}</td>
+        <td>{{u.cidade | lowercase }}</td>
         <td class="right">
           <a
             ><i class="material-icons my-icon-size" (click)="onEditar(u)"
@@ -112,6 +118,5 @@
       </tr>
     </tbody>
   </table>
-  </div>
-  <p></p>
-  <p></p>
+</div>
+</div>
