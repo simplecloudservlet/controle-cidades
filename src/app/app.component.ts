@@ -22,6 +22,8 @@ import { Constants } from './model/constants';
 })
 export class AppComponent implements AfterViewInit, OnInit {
 
+  mostrarFeatures: boolean = false;
+
   exibirCampo: boolean = false;
 
   loggedIn:boolean = false;
@@ -46,8 +48,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   @ViewChild('mobile') sideNav?: ElementRef;
 
   title = 'controle-cidades';
-  titulo = 'controle-cidades';
-  opcao = ['opcao1','opcao2','opcao3'];
+  titulo = 'Controle de Cidades Visitadas';
+  opcao = ['Cadastrar Cidades','Cadastrar Usuários','Cadastrar Visitas'];
 
   novovalor: number=123;
 
@@ -59,7 +61,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   /*Injestao de dependencia @Injectable: precisa sim de import*/
   constructor(private localStorageService: LocalStorageService){
     localStorage.setItem(Constants.USERS_KEY, JSON.stringify([]));//Cria a key de usuarios
-    localStorage.setItem(Constants.CIDADES_KEY, JSON.stringify([]));//Cria a key de usuarios
+    localStorage.setItem(Constants.CIDADES_KEY, JSON.stringify([]));//Cria a key de cidades
+    localStorage.setItem(Constants.VISITAS_KEY, JSON.stringify([]));//Cria a key de visitas
 
   }
 
@@ -104,6 +107,13 @@ metodoExibirCampo(): void{
     this.exibirCampo=false;
   else
     this.exibirCampo=true;
+}
+
+metodoMostrarFeatures(): void{
+  if(this.mostrarFeatures==true)
+    this.mostrarFeatures=false;
+  else
+    this.mostrarFeatures=true;
 }
 
 }

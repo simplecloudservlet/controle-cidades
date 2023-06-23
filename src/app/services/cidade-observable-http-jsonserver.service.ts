@@ -14,35 +14,35 @@ export class CidadeObservableHttpJsonserverService {
   };
   constructor(private httpClient: HttpClient) { }
 
-  getByCidadename(username: string): Observable<Cidade[]> {
-    return this.httpClient.get<Cidade[]>(`${this.URL}/${username}`);
+  getByCidadeName(cidadename: string): Observable<Cidade[]> {
+    return this.httpClient.get<Cidade[]>(`${this.URL}/${cidadename}`);
   }
 
-  post(user: Cidade): Observable<Cidade> {
+  post(cidade: Cidade): Observable<Cidade> {
     return this.httpClient
-      .post<Cidade>(this.URL+'/cidades', JSON.stringify(user), this.httpOptions);
+      .post<Cidade>(this.URL+'/cidades', JSON.stringify(cidade), this.httpOptions);
   }
   //DELETE: Remove do db.json
-  delete(user: Cidade): Observable<Cidade> {
+  delete(cidade: Cidade): Observable<Cidade> {
     return this.httpClient
-      .delete<Cidade>(this.URL+'/cidades/'+user.id, this.httpOptions);
+      .delete<Cidade>(this.URL+'/cidades/'+cidade.id, this.httpOptions);
   }
 
-  patch(user: Cidade): Observable<Cidade> {
+  patch(cidade: Cidade): Observable<Cidade> {
     return this.httpClient
       .patch<Cidade>(
-        this.URL+'/cidades/'+user.id,
-        JSON.stringify(user),
+        this.URL+'/cidades/'+cidade.id,
+        JSON.stringify(cidade),
         this.httpOptions
       );
   }
 
   //PUT: Insere todos os campos novamente
-  put(user: Cidade): Observable<Cidade> {
+  put(cidade: Cidade): Observable<Cidade> {
     return this.httpClient
       .put<Cidade>(
-        `${this.URL}/${user.id}`,
-        JSON.stringify(user),
+        `${this.URL}/${cidade.id}`,
+        JSON.stringify(cidade),
         this.httpOptions
       );
   }

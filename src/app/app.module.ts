@@ -12,6 +12,7 @@ import { LandPageComponent } from './land-page/land-page.component';
 import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
 import { CidadesComponent } from './cidades/cidades.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { VisitasComponent } from './visitas/visitas.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     ListaCidadesComponent,
     CidadesComponent,
     UsuariosComponent,
+    VisitasComponent,
   ],
   imports: [
     BrowserModule,

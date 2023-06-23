@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./segundo-componente.component.css']
 })
 export class SegundoComponenteComponent {
-  titulo: string = 'Controle de Cidades';
+  titulo: string = 'Controle de Cidades Visitadas';
 
 }
