@@ -70,7 +70,8 @@ constructor(
 
   onSubmit(): void{
 
-   /* //Chamada sincrona para salvar a cidade
+   /*
+   //Chamada sincrona para salvar a cidade - estah ok
     this.submetido = true;
     //Se nao existe, salva
     if (!this.localStorageService.existirCidades(this.cidade.name)) {
@@ -100,6 +101,17 @@ constructor(
       //Promise (chamada assincrona)
       this.cidadeService.salvar(this.cidade)
     .then(() => { /* recebe a resposta do `resolve` do `cidade.service` */
+      window.alert('Salvar com Promise Assincrono');
+
+ //Tenta salvar no JSON Server
+ try {
+  this.cidadeObservableService
+  .post(this.cidade)
+  .subscribe((u: Cidade)=> console.log(u.name + ' Salvo no JSON Server'));
+  } catch (e) {
+    console.log('Erro ao salvar no JSON Server');
+  }
+
       this.form.reset();
       this.cidade = new Cidade('');
       this.cidades= this.localStorageService.lerCidades();
@@ -123,7 +135,18 @@ constructor(
       //Promise
       this.cidadeService.atualizar(this.cidade)
       .then(() => {
-        window.alert('Atualizado com Promise Assincrono');
+        window.alert('Atualizar com Promise Assincrono');
+
+      //Tenta atualizar no JSON Server
+      try {
+        this.cidadeObservableService
+        .patch(this.cidade)
+        .subscribe((u: Cidade)=> console.log(u.name + ' Atualizado no JSON Server'));
+        } catch (e) {
+          console.log('Erro ao atualizar no JSON Server');
+        }
+
+
         this.form.reset();
         this.cidade = new Cidade('');
         this.cidades= this.localStorageService.lerCidades();
