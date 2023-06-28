@@ -52,6 +52,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   opcao = ['Cadastrar Cidades','Cadastrar Usuários','Cadastrar Visitas'];
 
   novovalor: number=123;
+background: any;
 
   ngAfterViewInit(): void {
 
