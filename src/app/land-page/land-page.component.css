@@ -1,0 +1,7 @@
+/*Ajuste da largura dos botoes com CSS */
+.container button {
+  display: block;
+  width: 100%;
+  margin: 2px;
+  text-align: center;
+}
