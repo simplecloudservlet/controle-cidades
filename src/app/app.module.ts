@@ -13,6 +13,7 @@ import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
 import { CidadesComponent } from './cidades/cidades.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VisitasComponent } from './visitas/visitas.component';
+import { LocalizarvisitaComponent } from './localizarvisita/localizarvisita.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { VisitasComponent } from './visitas/visitas.component';
     CidadesComponent,
     UsuariosComponent,
     VisitasComponent,
+    LocalizarvisitaComponent,
   ],
   imports: [
     BrowserModule,

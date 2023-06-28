@@ -106,6 +106,8 @@ ngOnInit(): void{
   this.usuarios = this.localStorageService.lerUsuarios(); /*Le os usuarios do localStorage */
   this.cidade = new Cidade('');
   this.cidades = this.localStorageService.lerCidades(); /*Le as cidades do localStorage */
+  this.visita = new Visita('','','');
+  this.visitas = this.localStorageService.lerVisitas(); /*Le as cidades do localStorage */
 
   //Inicializa o materialize.css select
   this.updateSelect();
