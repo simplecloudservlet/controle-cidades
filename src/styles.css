@@ -2,10 +2,10 @@
 @import "~materialize-css/dist/css/materialize.css";
 @import "~material-icons/iconfont/material-icons.css";
 
-.app-loading .logo {
+/*.app-loading .logo {
   width: 150px;
   height: 150px;
   background: url(assets/logo.png) center center
     no-repeat;
   background-size: cover;
-}
+}*/
