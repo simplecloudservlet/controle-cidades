@@ -19,6 +19,10 @@
     {
       "id": "130",
       "name": "Londrina"
+    },
+    {
+      "id": "166",
+      "name": "APARECIDA"
     }
   ],
   "visitas": [
@@ -51,6 +55,24 @@
       "usuario": "DDD",
       "cidade": "UBERABA",
       "data": "Jun 25, 2023"
+    },
+    {
+      "id": "197",
+      "usuario": "JOÃO DA SILVA SANTOS",
+      "cidade": "ARAGUARI",
+      "data": "Jun 09, 2023"
+    },
+    {
+      "id": "41",
+      "usuario": "AAA",
+      "cidade": "APARECIDA",
+      "data": "Jun 28, 2023"
+    },
+    {
+      "id": "200",
+      "usuario": "MARIA DA SILVA",
+      "cidade": "ARAGUARI",
+      "data": "Jun 28, 2023"
     }
   ],
   "usuarios": [

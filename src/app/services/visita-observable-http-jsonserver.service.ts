@@ -9,14 +9,19 @@ import { Visita } from '../model/visita';
   providedIn: 'root'
 })
 export class VisitaObservableHttpJsonserverService {
+
   URL = 'http://localhost:3000/visitas';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private httpClient: HttpClient) { }
 
-  getVisitas(visitas:string): Observable<Visita[]> {
+  getVisitas(): Observable<Visita[]> {
     return this.httpClient.get<Visita[]>(this.URL);
+  }
+
+  getVisitasUsuario(usuario:string): Observable<Visita[]> {
+    return this.httpClient.get<Visita[]>(this.URL+'/usuarios/'+usuario);
   }
 
   post(visita: Visita): Observable<Visita> {
