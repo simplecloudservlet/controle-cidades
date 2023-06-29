@@ -14,11 +14,13 @@ export class LocalStorageService {
   users!: User[];
   cidades!: Cidade[];
   visitas!: Visita[];
+  localizarvisitas!: Visita[];
 
   constructor(){
     this.users = WebStorage.get(Constants.USERS_KEY);
     this.cidades = WebStorage.get(Constants.CIDADES_KEY);
     this.visitas = WebStorage.get(Constants.VISITAS_KEY);
+    this.localizarvisitas = WebStorage.get(Constants.LOCALIZARVISITAS_KEY);
   }
 
   removerUsuario(usuario: User): boolean {
@@ -43,6 +45,11 @@ export class LocalStorageService {
       return u.id?.valueOf() != visita.id?.valueOf();
     });
     WebStorage.set(Constants.VISITAS_KEY, this.visitas); //Atualiza o vetor de visitas
+    return true;
+  }
+  removerLocalizarVisitas(): boolean {
+    this.visitas = [];
+    WebStorage.set(Constants.LOCALIZARVISITAS_KEY, this.visitas); //Atualiza o vetor de localizarvisitas
     return true;
   }
 
@@ -92,6 +99,13 @@ export class LocalStorageService {
     this.set(Constants.VISITAS_KEY, this.visitas);
     //window.alert(this.visitas.length);
   }
+  salvarLocalizarVisita(visita:Visita):void {
+    this.localizarvisitas = this.get(Constants.LOCALIZARVISITAS_KEY);
+    //window.alert(this.visitas.length);
+    this.localizarvisitas.push(visita); //insere no fim do array
+    this.set(Constants.LOCALIZARVISITAS_KEY, this.localizarvisitas);
+    //window.alert(this.visitas.length);
+  }
 
   existirUsuario(user: User){
     this.users = WebStorage.get(Constants.USERS_KEY);
@@ -132,5 +146,9 @@ export class LocalStorageService {
   lerVisitas(): Visita[] {
     this.visitas = WebStorage.get(Constants.VISITAS_KEY);
     return this.visitas;
+  }
+  lerLocalizarVisitas(): Visita[] {
+    this.localizarvisitas = WebStorage.get(Constants.LOCALIZARVISITAS_KEY);
+    return this.localizarvisitas;
   }
 }

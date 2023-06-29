@@ -49,7 +49,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   title = 'controle-cidades';
   titulo = 'Controle de Cidades Visitadas';
-  opcao = ['Cadastrar Cidades','Cadastrar Usuários','Cadastrar Visitas'];
+  opcao = ['Cadastrar Cidades','Cadastrar Usuários','Cadastrar Visitas','Localizar Visitas'];
 
   novovalor: number=123;
 background: any;
@@ -64,7 +64,7 @@ background: any;
     localStorage.setItem(Constants.USERS_KEY, JSON.stringify([]));//Cria a key de usuarios
     localStorage.setItem(Constants.CIDADES_KEY, JSON.stringify([]));//Cria a key de cidades
     localStorage.setItem(Constants.VISITAS_KEY, JSON.stringify([]));//Cria a key de visitas
-
+    localStorage.setItem(Constants.LOCALIZARVISITAS_KEY, JSON.stringify([]));//Cria a key de localizarvisitas
   }
 
   ngOnInit(): void {
