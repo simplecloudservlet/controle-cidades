@@ -7,6 +7,7 @@ import { ListaCidadesComponent } from './lista-cidades/lista-cidades.component';
 import { CidadesComponent } from './cidades/cidades.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { VisitasComponent } from './visitas/visitas.component';
+import { LocalizarvisitasComponent } from './localizarvisitas/localizarvisitas.component';
 
 const routes: Routes = [
   {path : '', component: LandPageComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path : 'controle-cidades/cidades', component: CidadesComponent},
   {path : 'controle-cidades/usuarios', component: UsuariosComponent},
   {path : 'controle-cidades/visitas', component: VisitasComponent},
+  {path : 'controle-cidades/localizarvisitas', component: LocalizarvisitasComponent}
 ];
 
 @NgModule({
