@@ -5,6 +5,11 @@ de controle de cidades visitadas.
 
 O frontend da aplicação será desenvolvido com Angular e o backend simulado pela implementação de uma API Fake, usando o JSON Server.
 
+## Video de explicação do funcionamento
+
+https://drive.google.com/file/d/1okC5v3vCOzyLPhpS6IE10lYAuA8aXZHD/view?usp=drive_link
+
+
 ## Endereço de Deploy - GitHub Pages
 
 https://simplecloudservlet.github.io/controle-cidades/
